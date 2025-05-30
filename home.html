@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f9fc;
+      color: #222;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: 220px;
+      background: #212529;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+    }
+    .sidebar-header {
+      padding: 20px;
+      font-weight: bold;
+      font-size: 20px;
+      border-bottom: 1px solid #32394a;
+    }
+    .nav {
+      flex-grow: 1;
+      padding: 0;
+      list-style: none;
+    }
+    .nav li {
+      border-bottom: 1px solid #282d38;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #c2c7ce;
+      display: block;
+      padding: 14px 24px;
+      transition: background .2s;
+    }
+    .nav a.active, .nav a:hover {
+      background: #2563eb;
+      color: #fff;
+    }
+    .sidebar-footer {
+      padding: 15px 20px;
+      border-top: 1px solid #32394a;
+      position: relative;
+    }
+    .user-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      justify-content: flex-start;
+      position: relative;
+    }
+    .user-avatar {
+      margin-right: 10px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #aaa;
+      display: inline-block;
+    }
+    .popup {
+      display: none;
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      width: 100%;
+      background: #2d323c;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.13);
+      z-index: 11;
+      text-align: left;
+    }
+    .popup a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #fff;
+      border-bottom: 1px solid #414653;
+      transition: background .2s;
+    }
+    .popup a:last-child { border-bottom: none; }
+    .popup a:hover {
+      background: #374151;
+    }
+    .main {
+      margin-left: 220px;
+      padding: 40px 32px;
+      background: #f8f9fc;
+      min-height: 100vh;
+    }
+    .main-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .main-title {
+      font-size: 32px;
+      margin-bottom: 8px;
+      text-align: center;
+      font-weight: normal;
+    }
+    .main-desc {
+      color: #6c757d;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .products {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center; /* Центрируем товары */
+    }
+    .product-card {
+      background: #fff;
+      border: 1px solid #e0e4ea;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(30, 64, 175, 0.05);
+      padding: 24px;
+      width: 250px;
+      text-align: center;
+      transition: box-shadow .2s;
+    }
+    .product-card:hover {
+      box-shadow: 0 4px 12px rgba(37,99,235,0.08);
+    }
+    .product-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .product-price {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .product-details {
+      font-size: 14px;
+      color: #5b6270;
+      margin-bottom: 18px;
+    }
+    .buy-btn {
+      padding: 10px 28px;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .buy-btn:hover {
+      background: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-header">Меню</div>
+      <ul class="nav">
+        <li><a class="active" href="#">Главная</a></li>
+        <li><a href="#">Категории</a></li>
+          <li><a href="#">Заказы</a></li>
+        <li><a href="#">Контакты</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-footer">
+      <button class="user-btn" onclick="toggleProfilePopup()">
+        <span class="user-avatar"></span>
+        Пользователь &#9662;
+      </button>
+      <div id="profilePopup" class="popup">
+        <a href="#">Профиль</a>
+        <a href="#">Выход</a>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="main-header">
+      <div class="main-title">Главная</div>
+      <div class="main-desc">Вы находитесь на сайте, предназначенном для продажи товаров.</div>
+    </div>
+    <div class="products">
+      <div class="product-card">
+        <div class="product-title">Товар 1</div>
+        <div class="product-price">$ 100</div>
+        <div class="product-details">10 users included, 2 GB of storage,<br>Email support, Help center access</div>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card">
+        <div class="product-title">Товар 1</div>
+        <div class="product-price">$ 100</div>
+        <div class="product-details">10 users included, 2 GB of storage,<br>Email support, Help center access</div>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card">
+        <div class="product-title">Товар 1</div>
+        <div class="product-price">$ 100</div>
+        <div class="product-details">10 users included, 2 GB of storage,<br>Email support, Help center access</div>
+        <button class="buy-btn">Купить</button>
+      </div>
+    </div>
+  </div>
+<!--  <script>-->
+<!--    function toggleProfilePopup() {-->
+<!--      var popup = document.getElementById('profilePopup');-->
+<!--      popup.style.display = popup.style.display === "block" ? "none" : "block";-->
+<!--    }-->
+<!--    window.onclick = function(event) {-->
+<!--      var popup = document.getElementById('profilePopup');-->
+<!--      if (event.target.closest('.user-btn') === null && event.target.closest('.popup') === null) {-->
+<!--        popup.style.display = "none";-->
+<!--      }-->
+<!--    }-->
+  </script>
+</body>
